@@ -20,7 +20,7 @@ export default function ProductView(){
 
 	const enroll = (productId) =>{
 
-		fetch(`${process.env.REACT_APP_API_URL}/users/enroll`,{
+		fetch(`${process.env.REACT_APP_API_URL}/cart/`,{
 
 			method:"POST",
 			headers:{
@@ -38,15 +38,7 @@ export default function ProductView(){
 			
 			console.log(data.message);
 
-            if (data.error === 'Admin is forbidden') {
-
-                Swal.fire({
-                    title: "Admin enrollment error",
-                    icon: 'error',
-                    text: "You are an administrator you may not enroll to a product."
-                });
-
-            } else if (data.message === 'Successfully Enrolled') {
+           	if (data.ok) {
 
                 Swal.fire({
                     title: "Successfully enrolled",
@@ -101,8 +93,7 @@ export default function ProductView(){
 							<Card.Text>{description}</Card.Text>
 							<Card.Subtitle>Price:</Card.Subtitle>
 							<Card.Text>PhP{price}</Card.Text>
-							<Card.Subtitle>Class Schedule</Card.Subtitle>
-							<Card.Text>8am - 5pm</Card.Text>
+							
 
 							{user.id !== null ?
 								<Button variant="primary" onClick={() => enroll(productId)}>Enroll</Button>
