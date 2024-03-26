@@ -6,12 +6,15 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 
 import AppNavbar from './components/AppNavbar';
+import Products from './pages/Products';
+import ProductView from './pages/ProductView';
+import AddProduct from './pages/AddProduct';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
 import Error from './pages/Error';
-
+import Profile from './pages/Profile';
 import './App.css';
 import { UserProvider } from './UserContext';
 
@@ -70,7 +73,11 @@ function App() {
                   <Routes>
                   
                     <Route path="/" element={<Home/>}/>
+                    <Route path="/products" element={<Products/>}/>
+                    <Route path="/products/:productId" element={<ProductView/>}/>
+                    <Route path="/addProduct" element={<AddProduct/>}/>
                     <Route path="/register" element={<Register/>}/>
+                    <Route path="/profile" element={<Profile />} />
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/logout" element={<Logout/>}/>
                     <Route path="*" element={<Error />} />

@@ -33,7 +33,7 @@ export default function Register(){
     	
     	e.preventDefault();
 
-    	fetch('process.env.REACT_APP_API_URL}/users/register',{
+    	fetch(`${process.env.REACT_APP_API_URL}/users/`,{
 
     		method:'POST',
     		headers:{
@@ -106,7 +106,7 @@ export default function Register(){
 	return (
 
 		(user.id !== null)?
-		<Navigate to="/courses" />
+		<Navigate to="/products" />
 		:
 		<Form onSubmit={(e)=>registerUser(e)}>
 			<h1 className="my-5 text-center">Register</h1>

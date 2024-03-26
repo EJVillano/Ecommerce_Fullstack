@@ -102,7 +102,7 @@ export default function Login(props) {
 
        
 
-        fetch(`${process.env.REACT_APP_API_URL}/users/users`,{
+        fetch(`${process.env.REACT_APP_API_URL}/users/details`,{
             headers:{
                 Authorization: `Bearer ${ token }`
             }
@@ -132,7 +132,7 @@ export default function Login(props) {
     return (
            
             (user.id !== null)?
-            <Navigate to ="/home"/>
+            <Navigate to ="/products"/>
             :
             <Form onSubmit={(e)=>authenticate(e)}>
                 <h1 className="my-5 text-center">Login</h1>
