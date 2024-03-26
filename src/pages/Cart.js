@@ -57,10 +57,11 @@ export default function Cart() {
 
   return (
     <div>
-      <h2>Shopping Cart</h2>
+      <h2 className="my-5 pt-5">Shopping Cart</h2>
       <Table striped bordered hover responsive>
         <thead>
           <tr>
+            <th>Product Id</th>
             <th>Product</th>
             <th>Price</th>
             <th>Quantity</th>
@@ -71,6 +72,7 @@ export default function Cart() {
           {cart.cartItems.map(item => (
             <tr key={item.productId}>
               <td>{item.productId}</td>
+              <td></td>
               <td></td>
               <td>{item.quantity}</td>
               <td>${item.subtotal}</td>

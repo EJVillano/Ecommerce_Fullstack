@@ -1,5 +1,4 @@
 import Banner from '../components/Banner';
-import Highlights from '../components/Highlights';
 import FeaturedProducts from '../components/FeaturedProducts';
 
 export default function Home(){
@@ -15,7 +14,7 @@ export default function Home(){
 		<>
 			< Banner data={data} />
 			<FeaturedProducts />
-			< Highlights />
+			
 		</>  
 	)
 }

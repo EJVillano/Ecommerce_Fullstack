@@ -14,7 +14,7 @@ export default function AppNavbar(){
 
 	return (
 
-		<Navbar bg="light" expand="lg">
+		<Navbar bg="light" expand="lg" fixed="top">
 			<Container fluid>
 			  <Navbar.Brand as={Link} to="/">E-Commerce</Navbar.Brand>
 			  <Navbar.Toggle aria-controls="basic-navbar-nav" />

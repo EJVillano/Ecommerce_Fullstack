@@ -44,13 +44,16 @@ export default function Products(){
 
 
 		return(
-            <>
+            <>	
                 {
                     (user.isAdmin === true) ?
 
                         <AdminView/>
                         :
-                        <UserView productsData={products} />
+						<>
+							<h1 className="my-5 pt-5 text-center">Products</h1>
+                        	<UserView productsData={products} />
+						</>
                 }
             </>
         )

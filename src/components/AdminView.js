@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-
+import { Link } from 'react-router-dom';
 import UserView from '../components/UserView';
 import AdminPanel from '../components/AdminPanel';
 import UserContext from '../UserContext';
@@ -48,5 +48,11 @@ export default function AdminProducts(){
 
 
 
-		return(<AdminPanel productsData={products} fetchData={fetchData} />)
+		return(
+			<>	
+				<AdminPanel productsData={products} fetchData={fetchData} />	
+			</>
+		
+		
+		)
 }

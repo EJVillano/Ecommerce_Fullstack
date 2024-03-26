@@ -114,7 +114,7 @@ export default function Register(){
 		<Navigate to="/products" />
 		:
 		<Form onSubmit={(e)=>registerUser(e)}>
-			<h1 className="my-5 text-center">Register</h1>
+			<h1 className="my-5 text-center my-5 pt-5">Register</h1>
 			<Form.Group>
 				<Form.Label>First Name:</Form.Label>
 				<Form.Control
