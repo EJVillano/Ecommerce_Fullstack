@@ -1,60 +1,52 @@
+import { useEffect, useState, useContext } from 'react';
 
-import { useState, useEffect } from 'react';
-import { Table } from 'react-bootstrap';
-import EditProduct from './EditProduct';
-import ArchiveProduct from './ArchiveProduct';
+import UserView from '../components/UserView';
+import AdminPanel from '../components/AdminPanel';
+import UserContext from '../UserContext';
 
+export default function AdminProducts(){
 
-export default function AdminView({ productsData, fetchData }) {
+	const { user } = useContext(UserContext);
+	const [products, setProducts] = useState([])
 
-
-    const [products, setProducts] = useState([])
-
-
-
-    useEffect(() => {
-        const productsArr = productsData.map(product => {
-            return (
-                <tr key={product._id}>
-                    <td>{product.name}</td>
-                    <td>{product.description}</td>
-                    <td>{product.price}</td>
-                    <td className={product.isActive ? "text-success" : "text-danger"}>
-                        {product.isActive ? "Available" : "Unavailable"}
-                    </td>
-
-                    <td><EditProduct product={product._id} fetchData={fetchData}/></td> 
-
-                    <td><ArchiveProduct product={product._id} isActive={product.isActive} fetchData={fetchData}/></td>    
-                </tr>
-                )
+	useEffect(()=>{
+		fetch(`${process.env.REACT_APP_API_URL}/products/all`,{
+            headers:{
+                Authorization: `Bearer ${ localStorage.getItem('token')}`
+            }
         })
+		.then(res=>res.json())
+		.then(data=>{
+			console.log(data)
+			const productData = data.products
+			setProducts(productData)
+	
+		})
+	},[]);
 
-        setProducts(productsArr)
 
-    }, [productsData])
+	const fetchData = () =>{
+
+		fetch(`${process.env.REACT_APP_API_URL}/products/all`,{
+            headers:{
+                Authorization: `Bearer ${ localStorage.getItem('token')}`
+            }
+        })
+		.then(res => res.json())
+		.then(data =>{
+			console.log(data);
+			setProducts(data.products);
+		})
+	}
+
+	useEffect(()=>{
+
+		fetchData();
+
+	},[])
 
 
-    return(
-        <>
-            <h1 className="text-center my-4"> Admin Dashboard</h1>
-            
-            <Table striped bordered hover responsive>
-                <thead>
-                    <tr className="text-center">
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Availability</th>
-                        <th colSpan="2">Actions</th>
-                    </tr>
-                </thead>
 
-                <tbody>
-                    {products}
-                </tbody>
-            </Table>    
-        </>
 
-        )
+		return(<AdminPanel productsData={products} fetchData={fetchData} />)
 }

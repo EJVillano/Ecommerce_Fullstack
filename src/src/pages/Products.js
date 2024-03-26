@@ -7,10 +7,11 @@ import UserContext from '../UserContext';
 export default function Products(){
 
 	const { user } = useContext(UserContext);
-	const [products, setProducts] = useState([])
+	const [products, setProducts] = useState([]);
+	const [adminProducts, setAdminProducts] = useState([]);
 
 	useEffect(()=>{
-		fetch(`${process.env.REACT_APP_API_URL}/products/`,)
+		fetch(`${process.env.REACT_APP_API_URL}/products/`)
 		.then(res=>res.json())
 		.then(data=>{
 			console.log(data)
@@ -31,8 +32,21 @@ export default function Products(){
 		})
 	}
 
+	const AdminData = () =>{
+
+		fetch(`${process.env.REACT_APP_API_URL}/products/all`,{
+            headers:{
+                Authorization: `Bearer ${ localStorage.getItem('token')}`
+            }
+        })
+		.then(res=>res.json())
+		.then(data=>{
+			console.log(data)
+			const AdminData = data.products
+			adminProducts(AdminData)
 	
-	
+		})
+	}
 
 	useEffect(()=>{
 
@@ -48,7 +62,7 @@ export default function Products(){
                 {
                     (user.isAdmin === true) ?
 
-                        <AdminView/>
+                        <AdminView productsData={products} fetchData={fetchData} />
                         :
                         <UserView productsData={products} />
                 }

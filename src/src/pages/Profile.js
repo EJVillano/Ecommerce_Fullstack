@@ -1,7 +1,7 @@
 import {useContext, useState, useEffect } from 'react';
 import {Row, Col} from 'react-bootstrap';
 import UserContext from '../UserContext';
-import { useNavigate ,Navigate } from 'react-router-dom';
+import { useNavigate,Navigate } from 'react-router-dom';
 import ResetPassword from '../components/ResetPassword';
 import UpdateProfile from '../components/UpdateProfile';
 
@@ -14,7 +14,7 @@ export default function Profile(){
 
     useEffect(()=>{
 
-        fetch(`${process.env.REACT_APP_API_URL}/users/details`,{
+        fetch(`${process.env.REACT_APP_API_URL}/users/`,{
             headers:{
                 Authorization: `Bearer ${ localStorage.getItem('token')}`
             }
