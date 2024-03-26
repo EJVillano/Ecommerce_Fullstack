@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
 
 
@@ -63,7 +64,11 @@ export default function Register(){
     			setPassword('');
     			setConfirmPassword('');
 
-    			alert("Registration successful!")
+    			Swal.fire({
+                    title:"Register Successful!",
+                    icon: "success",
+                    text: "Welcome Ecommerce"
+                })
 
     		}else if (data.error === "Email invalid"){
     			alert("Email is invalid")
