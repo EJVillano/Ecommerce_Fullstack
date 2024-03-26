@@ -10,12 +10,16 @@ export default function Products(){
 	const [products, setProducts] = useState([])
 
 	useEffect(()=>{
-		fetch(`${process.env.REACT_APP_API_URL}/products/`)
+		fetch(`${process.env.REACT_APP_API_URL}/products/all`,{
+            headers:{
+                Authorization: `Bearer ${ localStorage.getItem('token')}`
+            }
+        })
 		.then(res=>res.json())
 		.then(data=>{
-			console.log(data.products)
-			const productdata = data.products
-			setProducts(productdata)
+			console.log(data)
+			const productData = data.products
+			setProducts(productData)
 	
 		})
 	},[]);
@@ -23,7 +27,11 @@ export default function Products(){
 
 	const fetchData = () =>{
 
-		fetch(`${process.env.REACT_APP_API_URL}/products/`)
+		fetch(`${process.env.REACT_APP_API_URL}/products/all`,{
+            headers:{
+                Authorization: `Bearer ${ localStorage.getItem('token')}`
+            }
+        })
 		.then(res => res.json())
 		.then(data =>{
 			console.log(data);
