@@ -13,7 +13,9 @@ export default function Home(){
 	return(
 		<>
 			< Banner data={data} />
-			<FeaturedProducts />
+			<div className="my-5 pt-5">
+				<FeaturedProducts />
+			</div>
 			
 		</>  
 	)
