@@ -1,27 +1,55 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 export default function Cart() {
-  const [cart, setCart] = useState(null);
+  const [cart, setCart] = useState([]);
 
-  useEffect(()=>{
-
-    fetch(`${process.env.REACT_APP_API_URL}/cart/get-cart`,{
-        headers:{
-            Authorization: `Bearer ${ localStorage.getItem('token')}`
-        }
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/cart/get-cart`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
     })
-    .then(res=>res.json())
-    .then(data=>{
-
+      .then(res => res.json())
+      .then(data => {
         console.log(data);
         setCart(data.cart);
-        
-        
-        
-    })
-},[])
+      });
+  }, []);
 
+  const checkout = (e) => {
+    e.preventDefault();
+
+    fetch(`${process.env.REACT_APP_API_URL}/orders/checkout`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+      })
+      .then(() => {
+        Swal.fire({
+          title: 'Checkout Successful!',
+          icon: 'success',
+          text: 'Your order has been created successfully'
+        });
+        setCart([]);
+      })
+      .catch(error => {
+        console.error('Error during checkout:', error);
+        Swal.fire({
+          title: 'Error',
+          icon: 'error',
+          text: 'An error occurred during checkout. Please try again later.'
+        });
+      });
+  };
 
   if (!cart || !cart.cartItems || cart.cartItems.length === 0) {
     return <p>Cart is empty!</p>;
@@ -54,8 +82,7 @@ export default function Cart() {
           </tr>
         </tbody>
       </Table>
+      <Button onClick={checkout}>Checkout</Button>
     </div>
   );
 }
-
-
