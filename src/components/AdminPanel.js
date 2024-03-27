@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 import EditProduct from './EditProduct';
 import ArchiveProduct from './ArchiveProduct';
+import SetAdmin from '../components/SetAdmin';
 
 
 export default function AdminPanel({ productsData, fetchData }) {
@@ -36,8 +37,11 @@ export default function AdminPanel({ productsData, fetchData }) {
 
     return(
         <>
-            <h1 className="text-center my-5 pt-5"> Admin Dashboard</h1>
-            
+                
+            <div className="text-center mb-3">
+                <h1 className="mt-5 pt-5">Admin Dashboard</h1>
+                <SetAdmin />
+            </div>
             <Table striped bordered hover responsive>
                 <thead>
                     <tr className="text-center">
