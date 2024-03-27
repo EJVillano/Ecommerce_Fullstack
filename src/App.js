@@ -16,6 +16,7 @@ import Logout from './pages/Logout';
 import Error from './pages/Error';
 import Profile from './pages/Profile';
 import Cart from './pages/Cart';
+import Order from './pages/Order';
 import './App.css';
 import { UserProvider } from './UserContext';
 
@@ -80,6 +81,7 @@ function App() {
                     <Route path="/register" element={<Register/>}/>
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/cart" element={<Cart />} />
+                    <Route path="/order" element={<Order />} />
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/logout" element={<Logout/>}/>
                     <Route path="*" element={<Error />} />

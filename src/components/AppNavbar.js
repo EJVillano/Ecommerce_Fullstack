@@ -30,18 +30,21 @@ export default function AppNavbar(){
 	      	            user.isAdmin ?
 	      	            <>
 	      	                <Nav.Link as={Link} to="/addProduct">Add Product</Nav.Link>
+							  <Nav.Link as={Link} to="/order">All Orders</Nav.Link>
 	      	                <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
 	      	            </>
 	      	            :
 	      	            <>
 	      	                <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
 							<Nav.Link as={Link} to="/cart">Cart</Nav.Link>
+							<Nav.Link as={Link} to="/order">My Orders</Nav.Link>
 	      	                <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
 	      	            </>
 		      	        : 
 	      	            <>
 	      	                <Nav.Link as={Link} to="/login">Login</Nav.Link>
 	      	                <Nav.Link as={Link} to="/register">Register</Nav.Link>
+							
 	      	            </>
 		      	    }
 			      
