@@ -16,7 +16,7 @@ export default function AppNavbar(){
 
 		<Navbar bg="light" expand="lg" fixed="top">
 			<Container fluid>
-			  <Navbar.Brand as={Link} to="/">E-Commerce</Navbar.Brand>
+			  <Navbar.Brand as={Link} to="/">TITANIA</Navbar.Brand>
 			  <Navbar.Toggle aria-controls="basic-navbar-nav" />
 			  <Navbar.Collapse id="basic-navbar-nav">
 			    <Nav className="ml-auto">
@@ -30,7 +30,7 @@ export default function AppNavbar(){
 	      	            user.isAdmin ?
 	      	            <>
 	      	                <Nav.Link as={Link} to="/addProduct">Add Product</Nav.Link>
-							<Nav.Link as={Link} to="/order">All Orders</Nav.Link>
+							  <Nav.Link as={Link} to="/order">All Orders</Nav.Link>
 	      	                <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
 	      	            </>
 	      	            :

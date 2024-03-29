@@ -3,6 +3,7 @@ import { Container, Card, Button, Row, Col, Form } from 'react-bootstrap';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
+import backgroundImage from '../images/af1.jpg';
 
 export default function ProductView(){
 
@@ -42,7 +43,7 @@ export default function ProductView(){
                 });
                 navigate("/products");
             } else if (data.updatedCart) {
-				Swal.fire({
+                Swal.fire({
                     title: "Success",
                     icon: 'success',
                     text: `successfully added product to cart`
@@ -83,6 +84,7 @@ export default function ProductView(){
             <Row>
                 <Col lg={{ span: 6, offset: 3 }}>
                     <Card>
+                        <Card.Img variant="top" src={backgroundImage} alt="" />
                         <Card.Body>
                             <Card.Title>{name}</Card.Title>
                             <Card.Subtitle>Description:</Card.Subtitle>
