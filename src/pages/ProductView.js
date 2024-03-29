@@ -34,8 +34,8 @@ export default function ProductView(){
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
-            if (data.message) {
+            console.log(data.message);
+            if (data.message === undefined) {
                 Swal.fire({
                     title: "Success",
                     icon: 'success',
