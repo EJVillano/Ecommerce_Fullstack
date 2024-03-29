@@ -180,22 +180,28 @@ export default function Cart() {
       .then(updatedCartItem => {
         // Update the quantity and subtotal of the cart item
         const updatedCartItems = cart.cartItems.map(item =>
-          item.productId === selectedItem.productId ? { ...item, quantity: newQuantity, subtotal: updatedCartItem.subtotal } : item
+          item.productId === selectedItem.productId ? 
+            { 
+              ...item, 
+              quantity: newQuantity, 
+              subtotal: newQuantity * item.price 
+            } 
+            : item
         );
-  
+
         // Update the cart with the new cart items
         setCart(prevCart => ({
           ...prevCart,
           cartItems: updatedCartItems
         }));
-  
+
         // Show SweetAlert confirmation
         Swal.fire({
           title: 'Success!',
           icon: 'success',
           text: 'Quantity updated successfully.'
         });
-  
+
         setShowModal(false);
       })
       .catch(error => {
@@ -207,7 +213,6 @@ export default function Cart() {
         });
       });
   };
-  
 
   const checkout = (e) => {
     e.preventDefault();
