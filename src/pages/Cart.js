@@ -74,6 +74,40 @@ export default function Cart() {
     setShowModal(true);
   };
 
+  const handleRemoveItem = (productId) => {
+    fetch(`${process.env.REACT_APP_API_URL}/cart/${productId}/remove-from-cart`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          // If the removal was successful, update the cart
+          setCart(prevCart => ({
+            ...prevCart,
+            cartItems: prevCart.cartItems.filter(item => item.productId !== productId)
+          }));
+          Swal.fire({
+            title: 'Success!',
+            icon: 'success',
+            text: 'Item removed from cart successfully.'
+          });
+        } else {
+          throw new Error('Failed to remove item from cart');
+        }
+      })
+      .catch(error => {
+        console.error('Error removing item from cart:', error);
+        Swal.fire({
+          title: 'Error',
+          icon: 'error',
+          text: 'An error occurred while removing item from cart. Please try again later.'
+        });
+      });
+  };
+
   const handleSubmit = () => {
     fetch(`${process.env.REACT_APP_API_URL}/cart/update-cart-quantity`, {
       method: 'PATCH',
@@ -187,7 +221,8 @@ export default function Cart() {
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
-                <th>Edit Quantity</th>
+                <th colSpan={2}></th>
+                
               </tr>
             </thead>
             <tbody>
@@ -200,6 +235,9 @@ export default function Cart() {
                   <td>${item.subtotal}</td> {/* Subtotal displayed here */}
                   <td>
                     <Button variant="info" onClick={() => handleEditQuantity(item)}>Edit</Button>
+                  </td>
+                  <td>
+                    <Button variant="danger" onClick={() => handleRemoveItem(item.productId)}>Remove</Button>
                   </td>
                 </tr>
               ))}
