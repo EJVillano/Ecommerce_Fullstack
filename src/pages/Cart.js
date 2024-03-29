@@ -7,6 +7,7 @@ export default function Cart() {
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [newQuantity, setNewQuantity] = useState(1);
+  const [productMap, setProductMap] = useState({});
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/cart/get-cart`, {
@@ -35,22 +36,26 @@ export default function Cart() {
       return;
     }
 
-    const promises = cartItems.map(item =>
-      fetch(`${process.env.REACT_APP_API_URL}/products/${item.productId}`)
-        .then(res => res.json())
-    );
-
-    Promise.all(promises)
-      .then(products => {
-        const updatedCart = cartItems.map((item, index) => {
-          return {
-            productId: item.productId,
-            name: products[index].name,
-            price: products[index].price,
-            quantity: item.quantity,
-            subtotal: item.subtotal
-          };
+    const productIds = cartItems.map(item => item.productId);
+    fetch(`${process.env.REACT_APP_API_URL}/products?ids=${productIds.join(',')}`)
+      .then(res => res.json())
+      .then(data => {
+        const products = data.products; // Access the array of products from the response
+        console.log("Products received:", products);
+        const productDetailsMap = {};
+        products.forEach(product => {
+          productDetailsMap[product._id] = product.name;
         });
+        setProductMap(productDetailsMap);
+
+        const updatedCart = cartItems.map(item => ({
+          productId: item.productId,
+          name: productDetailsMap[item.productId] || 'Product Name Not Found',
+          price: item.price,
+          quantity: item.quantity,
+          subtotal: item.subtotal
+        }));
+
         setCart(prevCart => ({
           ...prevCart,
           cartItems: updatedCart
@@ -186,7 +191,7 @@ export default function Cart() {
               {cart.cartItems.map(item => (
                 <tr key={item.productId}>
                   <td>{item.productId}</td>
-                  <td>{item.name}</td>
+                  <td>{item.name}</td> {/* Product name displayed here */}
                   <td>PHP{item.price}</td>
                   <td>{item.quantity}</td>
                   <td>PHP{item.subtotal}</td>
