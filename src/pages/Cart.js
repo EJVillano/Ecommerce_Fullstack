@@ -178,33 +178,25 @@ export default function Cart() {
         }
       })
       .then(updatedCartItem => {
-        // Fetch updated cart data
-        fetch(`${process.env.REACT_APP_API_URL}/cart/get-cart`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.cart && data.cart.cartItems) {
-              setCart(data.cart);
-            } else {
-              console.error("Data structure from API is invalid:", data);
-              setCart(null); // Set cart to null when no cart is found
-            }
-          })
-          .catch(error => {
-            console.error('Error fetching updated cart data:', error);
-          });
-
-        setShowModal(false);
-
+        // Update the quantity and subtotal of the cart item
+        const updatedCartItems = cart.cartItems.map(item =>
+          item.productId === selectedItem.productId ? { ...item, quantity: newQuantity, subtotal: updatedCartItem.subtotal } : item
+        );
+  
+        // Update the cart with the new cart items
+        setCart(prevCart => ({
+          ...prevCart,
+          cartItems: updatedCartItems
+        }));
+  
         // Show SweetAlert confirmation
         Swal.fire({
           title: 'Success!',
           icon: 'success',
           text: 'Quantity updated successfully.'
         });
+  
+        setShowModal(false);
       })
       .catch(error => {
         console.error('Error updating quantity:', error);
@@ -215,6 +207,7 @@ export default function Cart() {
         });
       });
   };
+  
 
   const checkout = (e) => {
     e.preventDefault();
@@ -298,9 +291,9 @@ export default function Cart() {
             </tbody>
           </Table>
           <div className="row justify-content-end">          
-    <Button className="btn btn-success m-2" onClick={checkout}>Checkout</Button>
-    <Button className="btn btn-danger m-2" onClick={clearCart}>Clear Cart</Button>        
-  </div>
+            <Button className="btn btn-success m-2" onClick={checkout}>Checkout</Button>
+            <Button className="btn btn-danger m-2" onClick={clearCart}>Clear Cart</Button>        
+          </div>
         </React.Fragment>
       ) : (
         <p className="my-5 pt-5">Cart is empty!</p>
