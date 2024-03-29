@@ -108,6 +108,56 @@ export default function Cart() {
       });
   };
 
+  const clearCart = () => {
+    fetch(`${process.env.REACT_APP_API_URL}/cart/clear-cart`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Failed to clear cart');
+        }
+      })
+      .then(() => {
+        // Fetch updated cart data
+        fetch(`${process.env.REACT_APP_API_URL}/cart/get-cart`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.cart && data.cart.cartItems) {
+              setCart(data.cart);
+            } else {
+              console.error("Data structure from API is invalid:", data);
+              setCart(null); // Set cart to null when no cart is found
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching updated cart data:', error);
+          });
+        
+        Swal.fire({
+          title: 'Cart Cleared!',
+          icon: 'success',
+          text: 'Your cart has been cleared successfully.'
+        });
+      })
+      .catch(error => {
+        console.error('Error clearing cart:', error);
+        Swal.fire({
+          title: 'Error',
+          icon: 'error',
+          text: 'An error occurred while clearing the cart. Please try again later.'
+        });
+      });
+  };
+
   const handleSubmit = () => {
     fetch(`${process.env.REACT_APP_API_URL}/cart/update-cart-quantity`, {
       method: 'PATCH',
@@ -219,9 +269,8 @@ export default function Cart() {
                 <th>Product Id</th>
                 <th>Product</th>
                 <th>Price</th>
-                <th>Quantity</th>
+                <th colSpan="3">Quantity</th>
                 <th>Subtotal</th>
-                <th colSpan={2}></th>
                 
               </tr>
             </thead>
@@ -232,22 +281,26 @@ export default function Cart() {
                   <td>{item.name}</td> {/* Product name displayed here */}
                   <td>${item.price}</td> {/* Product price displayed here */}
                   <td>{item.quantity}</td>
-                  <td>${item.subtotal}</td> {/* Subtotal displayed here */}
                   <td>
                     <Button variant="info" onClick={() => handleEditQuantity(item)}>Edit</Button>
                   </td>
                   <td>
                     <Button variant="danger" onClick={() => handleRemoveItem(item.productId)}>Remove</Button>
                   </td>
+                  <td>${item.subtotal}</td> {/* Subtotal displayed here */}
+                  
                 </tr>
               ))}
               <tr>
-                <td colSpan="4">Total:</td>
+                <td colSpan="6">Total:</td>
                 <td>${cart.totalPrice}</td> {/* Total price displayed here */}
               </tr>
             </tbody>
           </Table>
-          <Button onClick={checkout}>Checkout</Button>
+          <div className="row justify-content-end">          
+    <Button className="btn btn-success m-2" onClick={checkout}>Checkout</Button>
+    <Button className="btn btn-danger m-2" onClick={clearCart}>Clear Cart</Button>        
+  </div>
         </React.Fragment>
       ) : (
         <p className="my-5 pt-5">Cart is empty!</p>
