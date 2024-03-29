@@ -51,7 +51,7 @@ export default function EditProduct({product, fetchData}){
 
 		e.preventDefault();
 
-		fetch(`${process.env.REACT_APP_API_URL}/products/${ productId }`, {
+		fetch(`${process.env.REACT_APP_API_URL}/products/${ productId }/update`, {
 	        method: 'PATCH',
 	        headers: {
 	            'Content-Type': 'application/json',
