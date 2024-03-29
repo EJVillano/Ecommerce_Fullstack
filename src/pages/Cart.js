@@ -40,18 +40,21 @@ export default function Cart() {
     fetch(`${process.env.REACT_APP_API_URL}/products?ids=${productIds.join(',')}`)
       .then(res => res.json())
       .then(data => {
-        const products = data.products; // Access the array of products from the response
+        const products = data.products;
         console.log("Products received:", products);
         const productDetailsMap = {};
         products.forEach(product => {
-          productDetailsMap[product._id] = product.name;
+          productDetailsMap[product._id] = {
+            name: product.name,
+            price: product.price
+          };
         });
         setProductMap(productDetailsMap);
 
         const updatedCart = cartItems.map(item => ({
           productId: item.productId,
-          name: productDetailsMap[item.productId] || 'Product Name Not Found',
-          price: item.price,
+          name: (productDetailsMap[item.productId] && productDetailsMap[item.productId].name) || 'Product Name Not Found',
+          price: (productDetailsMap[item.productId] && productDetailsMap[item.productId].price) || 0,
           quantity: item.quantity,
           subtotal: item.subtotal
         }));
@@ -192,9 +195,9 @@ export default function Cart() {
                 <tr key={item.productId}>
                   <td>{item.productId}</td>
                   <td>{item.name}</td> {/* Product name displayed here */}
-                  <td>PHP{item.price}</td>
+                  <td>${item.price}</td> {/* Product price displayed here */}
                   <td>{item.quantity}</td>
-                  <td>PHP{item.subtotal}</td>
+                  <td>${item.subtotal}</td> {/* Subtotal displayed here */}
                   <td>
                     <Button variant="info" onClick={() => handleEditQuantity(item)}>Edit</Button>
                   </td>
@@ -202,7 +205,7 @@ export default function Cart() {
               ))}
               <tr>
                 <td colSpan="4">Total:</td>
-                <td>PHP{cart.totalPrice}</td>
+                <td>${cart.totalPrice}</td> {/* Total price displayed here */}
               </tr>
             </tbody>
           </Table>
