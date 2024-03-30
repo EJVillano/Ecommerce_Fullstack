@@ -35,7 +35,7 @@ const OrderPage = () => {
       <h2>All Orders</h2>
       <Table striped bordered hover>
         <thead>
-          <tr>
+          <tr className="text-center bg-dark text-white">
             <th>Order ID</th>
             <th>User ID</th>
             <th>Total Price</th>

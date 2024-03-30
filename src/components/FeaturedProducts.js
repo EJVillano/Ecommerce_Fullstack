@@ -33,12 +33,12 @@ export default function FeaturedProducts(){
 			}
 
 
-			for(let i = 0; i<5; i++){
+			for(let i = 0; i<4; i++){
 				generateRandomNums()
 
 				featured.push(	
 
-					<PreviewProduct key={data.products[numbers[i]]._id} data={data.products[numbers[i]]}  breakPoint={2}/>
+					<PreviewProduct key={data.products[numbers[i]]._id} data={data.products[numbers[i]]}  breakPoint={3}/>
 				)
 
 			}
@@ -58,13 +58,21 @@ export default function FeaturedProducts(){
 	return(
 
 			<>
-				<h2 className="text-center">New Arrivals</h2>
+				<h2 className="text-center">NEW ARRIVALS</h2>
+				<CardGroup className="justify-content-center">
+
+					{preview}
+
+				</CardGroup>
+				<h2 className="text-center">SPECIALS SALE
+				</h2>
 				<CardGroup className="justify-content-center">
 
 					{preview}
 
 				</CardGroup>
 			</>
+
 
 
 		)

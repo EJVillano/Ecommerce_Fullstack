@@ -18,7 +18,7 @@ export default function Home(){
                 <img src={backgroundImage} alt="" style={{ width: '100%', height: 'auto' }} />
                 <FeaturedProducts />
             </div>
-            <footer style={{ backgroundColor: 'black', color: 'white' }}>
+            <footer style={{ backgroundColor: 'black', color: 'white',width: '100%', position: 'absolute'  }}>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6">
