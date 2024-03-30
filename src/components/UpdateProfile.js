@@ -78,7 +78,7 @@ const UpdateProfile = () => {
         {
           message && <div className="alert alert-danger">{message}</div>
         }
-        <button type="submit" className="btn btn-primary">Update Profile</button>
+        <button type="submit" className="btn btn-dark">Update Profile</button>
       </form>
     </div>
   );

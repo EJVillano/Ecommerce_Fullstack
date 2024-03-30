@@ -15,9 +15,14 @@ export default function ProductView(){
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(0);
     const [quantity, setQuantity] = useState(1); // Default quantity is 1
+    const [size, setSize] = useState(""); // Default size is empty
 
     const handleQuantityChange = (event) => {
         setQuantity(parseInt(event.target.value)); // Convert value to integer
+    };
+
+    const handleSizeChange = (event) => {
+        setSize(event.target.value);
     };
 
     const Addtocart = () => {
@@ -29,7 +34,8 @@ export default function ProductView(){
             },
             body: JSON.stringify({
                 productId: productId,
-                quantity: quantity // Use the selected quantity
+                quantity: quantity, // Use the selected quantity
+                size: size // Use the selected size
             })
         })
         .then(res => res.json())
@@ -91,6 +97,25 @@ export default function ProductView(){
                             <Card.Text>{description}</Card.Text>
                             <Card.Subtitle>Price:</Card.Subtitle>
                             <Card.Text>PhP{price}</Card.Text>
+                            <Form.Group controlId="size">
+                                <Form.Label>Choose a size:</Form.Label>
+                                <Form.Control as="select" value={size} onChange={handleSizeChange}>
+                                    <option value="">Select US Size</option>
+                                    <option value="6">6</option>
+                                    <option value="6.5">6.5</option>
+                                    <option value="7">7</option>
+                                    <option value="7.5">7.5</option>
+                                    <option value="8">8</option>
+                                    <option value="8.5">8.5</option>
+                                    <option value="9">9</option>
+                                    <option value="9.5">9.5</option>
+                                    <option value="10">10</option>
+                                    <option value="10.5">10.5</option>
+                                    <option value="11">11</option>
+                                    <option value="11.5">11.5</option>
+                                    <option value="12">12</option>
+                                </Form.Control>
+                            </Form.Group>
                             <Form.Group controlId="quantity">
                                 <Form.Label>Quantity:</Form.Label>
                                 <Form.Control type="number" min="1" value={quantity} onChange={handleQuantityChange} />

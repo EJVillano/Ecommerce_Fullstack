@@ -75,7 +75,7 @@ export default function ResetPassword(){
         {
           message && <div className="alert alert-danger">{message}</div>
         }
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-dark">
           Reset Password
         </button>
       </form>

@@ -7,6 +7,7 @@ export default function productCard({ productProp }) {
 
     return (
         <Card className="mt-3">
+            <Card.Img variant="top" src="./images/rt.jpg" alt={name} style={{ width: '400px', height: '400px', objectFit: 'cover' }} />
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
                 <Card.Subtitle>Description:</Card.Subtitle>
@@ -15,7 +16,7 @@ export default function productCard({ productProp }) {
                 <Card.Text>PhP{price}</Card.Text>
         
 
-                <Link className="btn btn-primary" to={`/products/${_id}`}>Details</Link>
+                <Link className="btn btn-dark" to={`/products/${_id}`}>Details</Link>
 
             </Card.Body>
         </Card>

@@ -52,7 +52,7 @@ export default function SearchByPriceRange() {
             onChange={(e) => setMaxPrice(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">Search</button>
+        <button type="submit" className="btn btn-dark">Search</button>
       </form>
       <div>
         <h4>Search Results:</h4>
