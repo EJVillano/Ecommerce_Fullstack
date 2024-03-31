@@ -1,5 +1,6 @@
 import Banner from '../components/Banner';
 import FeaturedProducts from '../components/FeaturedProducts';
+import SearchByName from '../components/SearchByName';
 import backgroundImage from '../images/bg1.jpg';
 
 export default function Home(){
@@ -14,13 +15,14 @@ export default function Home(){
     return(
         <>
             <Banner data={data} />
+            <SearchByName/>
             <div className="my-5 pt-5">
                 <img src={backgroundImage} alt="" style={{ width: '100%', height: 'auto' }} />
                 <FeaturedProducts />
             </div>
             <footer style={{ backgroundColor: 'black', color: 'white',width: '100%', position: 'absolute'  }}>
                 <div className="container">
-                    <div className="row">
+                    <div className="row mt-5">
                         <div className="col-md-6">
                             <h5>Contact Us</h5>
                             <h5>About Us</h5>
