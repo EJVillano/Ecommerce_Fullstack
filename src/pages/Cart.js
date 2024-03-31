@@ -31,6 +31,17 @@ export default function Cart() {
       });
   }, []);
 
+  useEffect(() => {
+    // Calculate total price whenever cart items change
+    if (cart.cartItems.length > 0) {
+      const totalPrice = cart.cartItems.reduce((acc, item) => acc + item.subtotal, 0);
+      setCart(prevCart => ({
+        ...prevCart,
+        totalPrice: totalPrice
+      }));
+    }
+  }, [cart.cartItems]);
+
   const fetchProductsDetails = (cartItems) => {
     if (!cartItems || cartItems.length === 0) {
       return;
