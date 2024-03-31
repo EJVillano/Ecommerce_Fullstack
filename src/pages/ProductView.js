@@ -17,6 +17,8 @@ export default function ProductView(){
     const [quantity, setQuantity] = useState(1); // Default quantity is 1
     const [size, setSize] = useState(""); // Default size is empty
 
+    
+
     const handleQuantityChange = (event) => {
         setQuantity(parseInt(event.target.value)); // Convert value to integer
     };

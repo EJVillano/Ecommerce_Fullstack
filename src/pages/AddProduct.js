@@ -86,7 +86,7 @@ export default function AddProduct(){
             (user.isAdmin === true)
             ?
             <>
-                <h1 className="my-5 text-center">Add Product</h1>
+                <h1 className="my-5 pt-5 text-center">Add Product</h1>
                 <Form onSubmit={e => createProduct(e)}>
                     <Form.Group>
                         <Form.Label>Name:</Form.Label>

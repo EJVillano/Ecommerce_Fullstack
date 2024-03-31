@@ -5,10 +5,13 @@ export default function PreviewProduct(props) {
   const { breakPoint, data } = props;
   const { _id, name, description, price } = data;
 
+  const imageSrc = `./images/${name}.jpg`;
+  
+
   return (
     <Col xs={12} md={breakPoint}>
       <Card className="cardHighlight">
-        <Card.Img variant="top" src="./images/rt.jpg" alt="" />
+        <Card.Img variant="top" src={imageSrc} alt="" />
         <Card.Body>
           <Card.Title className="text-center">
             <Link to={`/products/${_id}`}>{name}</Link>

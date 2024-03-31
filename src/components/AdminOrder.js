@@ -31,7 +31,7 @@ const OrderPage = () => {
   };
 
   return (
-    <div>
+    <div className='my-5 pt-5 text-center'>
       <h2>All Orders</h2>
       <Table striped bordered hover>
         <thead>
