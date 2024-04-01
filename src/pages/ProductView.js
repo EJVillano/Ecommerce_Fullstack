@@ -3,7 +3,7 @@ import { Container, Card, Button, Row, Col, Form } from 'react-bootstrap';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
-import backgroundImage from '../images/af1.jpg';
+import backgroundImage from '../images/rt.jpg';
 
 export default function ProductView(){
 
@@ -94,14 +94,15 @@ export default function ProductView(){
         });
     }, [productId]);
 
-    const imageSrc = `./images/${name}.jpg`;
 
     return(
         <Container className="mt-5 pt-5">
             <Row>
                 <Col lg={{ span: 6, offset: 3 }}>
                     <Card>
-                        <Card.Img variant="top" src={imageSrc} alt="" />
+                    <Card.Img variant="top" src={`../images/${name}.jpg`} alt={name} />
+                    
+
                         <Card.Body>
                             <Card.Title>{name}</Card.Title>
                             <Card.Subtitle>Description:</Card.Subtitle>
