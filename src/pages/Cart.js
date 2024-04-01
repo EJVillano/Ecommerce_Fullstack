@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 export default function Cart() {
@@ -252,64 +252,31 @@ export default function Cart() {
       <h2 className="my-5 pt-5">Shopping Cart</h2>
       {cart && cart.cartItems && cart.cartItems.length > 0 ? (
         <React.Fragment>
-          <Table striped bordered hover responsive className="custom-table">
-            <thead>
-              <tr className='plain-row'>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {cart.cartItems.map(item => (
-                <tr key={item.productId}>
-                  <td>{item.name}</td>
-                  <td>${item.price}</td>
-                  <td>
-                    <Button variant="dark" className='mr-2' onClick={() => handleEditQuantity(item, false)}>-</Button>
-                    {item.quantity }
-                    <Button variant="dark" className='ml-2' onClick={() => handleEditQuantity(item, true)}>+</Button>
-                  </td>
-                  <td>
-                      <div className="row justify-content-center m-0">
-                        ₱{item.subtotal}
-                      </div>
-                    </td>
-                    
-                  <td>
-                    <div className="row justify-content-center">
-                      <Button variant="danger" className='mx-auto text-center' onClick={() => handleRemoveItem(item.productId)}>Remove</Button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-              <tr className=' text-white'>
-                <td colSpan="3" className='font-weight-bold text-dark txt-sz-lg'>Total:</td>
-                <td colSpan="2">
-                  <div  className="total-row row justify-content-center text-lg font-weight-bold border m-0">
-                    ₱{cart.totalPrice}
+          {cart.cartItems.map(item => (
+            <div key={item.productId} className="card mb-3">
+              <div className="card-body">
+                <h5 className="card-title">{item.name}</h5>
+                <p className="card-text">Price: ${item.price}</p>
+                <p className="card-text">Quantity:
+                  <Button variant="dark" className='mx-2' onClick={() => handleEditQuantity(item, false)}>-</Button>
+                  {item.quantity}
+                  <Button variant="dark" className='ml-2' onClick={() => handleEditQuantity(item, true)}>+</Button>
+                </p>
+                <div className='row'>
+                  <div className='col-2'>
+                    <p className="card-text">Subtotal: ₱{item.subtotal}</p>
                   </div>
-                </td>
-              </tr>
-              <tr>
-                <td colSpan="3"></td>
-                <td>
-                  <div className="row justify-content-center">          
-                  <Button className="btn btn-success mx-2" onClick={checkout}>Checkout</Button>        
-                  </div>
-                </td>
-                <td>
-                <div className="row justify-content-center">          
-                  <Button className="btn btn-danger mx-2" onClick={clearCart}>Clear Cart</Button>        
-                  </div>
-                </td>
-
-              </tr>
-            </tbody>
-          </Table>
-          
+                
+                <Button variant="danger" onClick={() => handleRemoveItem(item.productId)}>Remove</Button>
+                </div>
+              </div>
+            </div>
+          ))}
+          <div className="text-center mb-4">
+            <p className="font-weight-bold text-lg txt-sz-lg">Total: ₱{cart.totalPrice}</p>
+            <Button className="btn btn-success mx-2" onClick={checkout}>Checkout</Button>
+            <Button className="btn btn-danger mx-2" onClick={clearCart}>Clear Cart</Button>
+          </div>
         </React.Fragment>
       ) : (
         <p className="my-5 pt-5">Cart is empty!</p>
