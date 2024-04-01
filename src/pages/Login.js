@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useContext } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import { Navigate } from 'react-router-dom';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { Navigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 
@@ -130,43 +130,50 @@ export default function Login(props) {
     console.log(user);
 
     return (
-           
-            (user.id !== null)?
-            <Navigate to ="/products"/>
-            :
-            <Form onSubmit={(e)=>authenticate(e)}>
-                <h1 className="my-5 text-center my-5 pt-5">Login</h1>
-                <Form.Group controlId="userEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control 
-                        type="email" 
-                        placeholder="Enter email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </Form.Group>
+            (user.id !== null) ?
+                <Navigate to="/products" />
+                :
+                <div className="d-flex justify-content-center align-items-center vh-100">
+                    <Container className="mt-5">
+                        <Row className="justify-content-center">
+                            <Col md={6}>
+                                <div className="rounded p-4 border">
+                                    <h1 className="text-center mb-4">Login</h1>
+                                    <Form onSubmit={(e) => authenticate(e)}>
+                                        <Form.Group>
+                                            <Form.Label>Email address:</Form.Label>
+                                            <Form.Control
+                                                type="email"
+                                                placeholder="Enter email"
+                                                value={email}
+                                                onChange={(e) => setEmail(e.target.value)}
+                                                required
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Label>Password:</Form.Label>
+                                            <Form.Control
+                                                type="password"
+                                                placeholder="Password"
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
+                                                required
+                                            />
+                                        </Form.Group>
 
-                <Form.Group controlId="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control 
-                        type="password" 
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </Form.Group>
-
-                { isActive ? 
-                    <Button variant="primary" type="submit" id="submitBtn">
-                        Submit
-                    </Button>
-                    : 
-                    <Button variant="danger" type="submit" id="submitBtn" disabled>
-                        Submit
-                    </Button>
-                }
-            </Form>
-    )
-}
+                                        <Form.Group className="text-center mt-4">
+                                            {isActive ?
+                                               <Button variant="primary" type="submit" id="submitBtn" className="w-100">Submit</Button>
+                                               :
+                                               <Button variant="danger" type="submit" id="submitBtn" disabled className="w-100">Submit</Button>
+                                            }
+                                        </Form.Group>
+                                        <p className="text-center">Don't have an account yet? <Link to="/register" style={{ color: 'blue' }}>Click here</Link> to register.</p>
+                                    </Form>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
+        )
+    }

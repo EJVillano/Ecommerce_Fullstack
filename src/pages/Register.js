@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import { Navigate } from 'react-router-dom';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { Navigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
 
@@ -108,83 +108,97 @@ export default function Register(){
     console.log("access",user.access)
     console.log("email", user.email)
 
-	return (
+    return (
+           (user.id !== null) ?
+               <Navigate to="/products" />
+               :
+               <div className="d-flex justify-content-center align-items-center vh-100 mt-5">
+                   <Container>
+                       <Row className="justify-content-center">
+                           <Col md={6}>
+                               <div className="rounded p-4 border">
+                                   <h1 className="text-center mb-4">Register</h1>
+                                   <Form onSubmit={(e) => registerUser(e)}>
+                                       <Form.Group>
+                                           <Form.Label>First Name:</Form.Label>
+                                           <Form.Control
+                                               type="text"
+                                               placeholder="Enter First Name"
+                                               required
+                                               value={firstName}
+                                               onChange={e => { setFirstName(e.target.value) }}
+                                           />
+                                       </Form.Group>
 
-		(user.id !== null)?
-		<Navigate to="/products" />
-		:
-		<Form onSubmit={(e)=>registerUser(e)}>
-			<h1 className="my-5 text-center my-5 pt-5">Register</h1>
-			<Form.Group>
-				<Form.Label>First Name:</Form.Label>
-				<Form.Control
-					type="text"
-					placeholder="Enter First Name"
-					required
-					value={firstName}
-					onChange={e=>{setFirstName(e.target.value)}}
-				/>
-			</Form.Group>
-			<Form.Group>
-				<Form.Label>Last Name:</Form.Label>
-				<Form.Control
-					type="text"
-					placeholder="Enter Last Name"
-					required
-					value={lastName}
-					onChange={e=>{setLastName(e.target.value)}}
-				/>
-			</Form.Group>
-			<Form.Group>
-				<Form.Label>Email:</Form.Label>
-				<Form.Control
-					type="email"
-					placeholder="Enter Email"
-					required
-					value={email}
-					onChange={e=>{setEmail(e.target.value)}}
-				/>
-			</Form.Group>
-			<Form.Group>
-				<Form.Label>Mobile No:</Form.Label>
-				<Form.Control
-					type="number"
-					placeholder="Enter 11 Digit No."
-					required
-					value={mobileNo}
-					onChange={e=>{setMobileNo(e.target.value)}}
-				/>
-			</Form.Group>
-			<Form.Group>
-				<Form.Label>Password:</Form.Label>
-				<Form.Control
-					type="password"
-					placeholder="Enter Password"
-					required
-					value={password}
-					onChange={e=>{setPassword(e.target.value)}}
-				/>
-			</Form.Group>
-			<Form.Group>
-				<Form.Label>Confirm Password:</Form.Label>
-				<Form.Control
-					type="password"
-					placeholder="Confirm Password"
-					required
-					value={confirmPassword}
-					onChange={e=>{setConfirmPassword(e.target.value)}}
-				/>
-			</Form.Group>
+                                       <Form.Group>
+                                           <Form.Label>Last Name:</Form.Label>
+                                           <Form.Control
+                                               type="text"
+                                               placeholder="Enter Last Name"
+                                               required
+                                               value={lastName}
+                                               onChange={e => { setLastName(e.target.value) }}
+                                           />
+                                       </Form.Group>
 
-			
-			{isActive ?
-				<Button variant="primary" type="submit" id="submitBtn">Submit</Button>
-				:
-				<Button variant="danger" type="submit" id="submitBtn" disabled>Submit</Button>
-			}
-			
+                                       <Form.Group>
+                                           <Form.Label>Email:</Form.Label>
+                                           <Form.Control
+                                               type="email"
+                                               placeholder="Enter Email"
+                                               required
+                                               value={email}
+                                               onChange={e => { setEmail(e.target.value) }}
+                                           />
+                                       </Form.Group>
 
-		</Form>
-	)
+                                       <Form.Group>
+                                           <Form.Label>Mobile No:</Form.Label>
+                                           <Form.Control
+                                               type="number"
+                                               placeholder="Enter 11 Digit No."
+                                               required
+                                               value={mobileNo}
+                                               onChange={e => { setMobileNo(e.target.value) }}
+                                           />
+                                       </Form.Group>
+
+                                       <Form.Group>
+                                           <Form.Label>Password:</Form.Label>
+                                           <Form.Control
+                                               type="password"
+                                               placeholder="Enter Password"
+                                               required
+                                               value={password}
+                                               onChange={e => { setPassword(e.target.value) }}
+                                           />
+                                       </Form.Group>
+
+                                       <Form.Group>
+                                           <Form.Label>Confirm Password:</Form.Label>
+                                           <Form.Control
+                                               type="password"
+                                               placeholder="Confirm Password"
+                                               required
+                                               value={confirmPassword}
+                                               onChange={e => { setConfirmPassword(e.target.value) }}
+                                           />
+                                       </Form.Group>
+
+                                       {/*conditionally render submit button based on the isActive state*/}
+                                       <Form.Group className="text-center mt-4">
+                                           {isActive ?
+                                               <Button variant="primary" type="submit" id="submitBtn" className="w-100">Submit</Button>
+                                               :
+                                               <Button variant="danger" type="submit" id="submitBtn" disabled className="w-100">Please enter your registration details</Button>
+                                           }
+                                       </Form.Group>
+                                       <p className="text-center">Already have an account? <Link to="/login" style={{ color: 'blue' }}>Click here</Link> to log in.</p>
+                                   </Form>
+                               </div>
+                           </Col>
+                       </Row>
+                   </Container>
+               </div>
+       )
 }
-
