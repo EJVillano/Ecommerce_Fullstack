@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from 'react';
 import UserView from '../components/UserView';
 import AdminView from '../components/AdminView';
 import UserContext from '../UserContext';
+import ScrollBehavior from '../components/ScrollBehavior';
 
 export default function Products(){
 
@@ -53,6 +54,7 @@ export default function Products(){
 						<>
 							<h1 className="my-5 pt-5 text-center">Products</h1>
                         	<UserView productsData={products} />
+							<ScrollBehavior/>
 						</>
                 }
             </>

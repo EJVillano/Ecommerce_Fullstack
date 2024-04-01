@@ -254,20 +254,19 @@ export default function Cart() {
         <React.Fragment>
           {cart.cartItems.map(item => (
             <div key={item.productId} className="card mb-3">
-              <div className="card-body">
-                <h5 className="card-title">{item.name}</h5>
-                <p className="card-text">Price: ${item.price}</p>
-                <p className="card-text">Quantity:
-                  <Button variant="dark" className='mx-2' onClick={() => handleEditQuantity(item, false)}>-</Button>
-                  {item.quantity}
-                  <Button variant="dark" className='ml-2' onClick={() => handleEditQuantity(item, true)}>+</Button>
-                </p>
-                <div className='row'>
-                  <div className='col-2'>
-                    <p className="card-text">Subtotal: ₱{item.subtotal}</p>
-                  </div>
-                
-                <Button variant="danger" onClick={() => handleRemoveItem(item.productId)}>Remove</Button>
+              <div className="card-body row d-flex justify-content-between">
+                <div className='col-6'>
+                  <h5 className="card-title">{item.name}</h5>
+                  <p className="card-text">Price: ${item.price}</p>
+                  <p className="card-text">
+                    <Button variant="dark" className='mx-2' onClick={() => handleEditQuantity(item, false)}>-</Button>
+                    {item.quantity}
+                    <Button variant="dark" className='ml-2' onClick={() => handleEditQuantity(item, true)}>+</Button>
+                  </p>
+                </div>
+                <div className='col-6 col-sm-4 col-md-2'>
+                  <p className="card-text text-success txt-sz-lg">₱{item.subtotal}</p>
+                  <Button className='mt-5 ml-3 ml-md-5' variant="danger" onClick={() => handleRemoveItem(item.productId)}>Remove</Button>
                 </div>
               </div>
             </div>

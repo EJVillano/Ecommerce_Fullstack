@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.cardHighlight{
+  min-height: 100%;
+}
+
 .image{
   width: 400px;
   height: 400px;
@@ -45,4 +49,29 @@
 
 .txt-sz-lg{
   font-size: 2rem;
+}
+
+.arrow-up
+{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: lightgray;
+    border: 1px solid lightgray;
+    border-radius: 15%;
+    color: black;
+    cursor: pointer;
+    transition: background-color, 0.3s, transform 0.3s;
+}
+
+.arrow-up:hover
+{
+    background-color: transparent;
+}
+
+.arrow-up i
+{
+    padding: 8px;
+    font-size: 30px;
+    font-weight: 600;
 }

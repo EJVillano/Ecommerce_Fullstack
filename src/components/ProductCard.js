@@ -14,8 +14,10 @@ export default function productCard({ productProp }) {
                 <Card.Title>{name}</Card.Title>
                 <Card.Subtitle>Description:</Card.Subtitle>
                 <Card.Text>{description}</Card.Text>
+                <Card.Footer className='text-center'>
                 <Card.Subtitle>Price:</Card.Subtitle>
                 <Card.Text>PhP{price}</Card.Text>
+                </Card.Footer>
         
 
                 <Link className="btn btn-dark" to={`/products/${_id}`}>Details</Link>

@@ -2,6 +2,7 @@ import Banner from '../components/Banner';
 import FeaturedProducts from '../components/FeaturedProducts';
 import SearchByName from '../components/SearchByName';
 import backgroundImage from '../images/bg1.jpg';
+import ScrollBehavior from '../components/ScrollBehavior';
 
 export default function Home(){
 
@@ -45,6 +46,7 @@ export default function Home(){
                     <h5>© 2024 Titania Inc., All Rights Reserved</h5>
                 </div>
             </footer>
+            <ScrollBehavior/>
         </>
     )
 }
