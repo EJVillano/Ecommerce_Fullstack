@@ -6,7 +6,7 @@ import backgroundImage from '../images/bg1.jpg';
 export default function Home(){
 
     const data = {
-        title: "TITAN SPRING '24: OLYMPUS SPORTS CLUB",
+        title: "TITANIA WINTER '24: OLYMPUS SPORTS CLUB",
         content: "THE UNIVERSAL LOVE LANGUAGE FOR SPORTS, ENCAPSULATED.",
         destination: "/products",
         label: "SHOP NOW"

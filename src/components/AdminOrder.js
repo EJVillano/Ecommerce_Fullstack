@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 
-const OrderPage = () => {
+export default function OrderPage () {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -59,4 +59,4 @@ const OrderPage = () => {
   );
 };
 
-export default OrderPage;
+
