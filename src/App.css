@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+bg-pic {
+  background-image: url('../src/images/red-sneaker-shoe-clip-art.jpg');
+  /* You can specify additional properties to control how the background image behaves */
+  background-repeat: no-repeat; /* This prevents the image from repeating */
+  background-size: cover; /* This makes the image cover the entire background */
+  /* You can also specify other properties like background-position, background-attachment, etc. */
+}
+
 .cardHighlight{
   min-height: 100%;
 }
@@ -74,4 +82,13 @@
     padding: 8px;
     font-size: 30px;
     font-weight: 600;
+}
+
+.down-arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid black; /* Adjust the color as needed */
 }

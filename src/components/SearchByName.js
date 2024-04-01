@@ -25,17 +25,18 @@ const SearchByName = () => {
 
   return (
     <Container className='container-fluid'>
-      <div className='row d-flex justify-content-center'>
-        
-      <Form.Group className='col-9 m-3'>
-        <Form.Control
-          type="text"
-          placeholder="Enter product name"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </Form.Group>
-      <Link className="btn btn-dark col-1 my-auto" variant="dark" onClick={handleSearch}>SEARCH</Link>
+      <div className='row'>
+        <Form.Group className='col-12 col-md-9 m-3'>
+          <Form.Control
+            type="text"
+            placeholder="Enter product name"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </Form.Group>
+        <div className="col-12 col-md-2 d-flex align-items-end">
+          <Button className="w-100 my-auto" variant="dark" onClick={handleSearch}>SEARCH</Button>
+        </div>
       </div>
       <hr />
       <h4>Search Results:</h4>

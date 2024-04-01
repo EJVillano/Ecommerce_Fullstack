@@ -17,13 +17,13 @@ export default function Home(){
         <>
             <Banner data={data} />
             <SearchByName/>
-            <div className="my-5 pt-5">
-                <img src={backgroundImage} alt="" style={{ width: '100%', height: 'auto' }} />
+            <div className="my-5 pt-5" style={{ overflowX: 'hidden' }}>
+                {window.innerWidth > 768 && <img src={backgroundImage} alt="" style={{ width: '100%', height: 'auto' }} />}
                 <FeaturedProducts />
             </div>
-            <footer style={{ backgroundColor: 'black', color: 'white',width: '100%', position: 'absolute'  }}>
-                <div className="container">
-                    <div className="row mt-5">
+            <footer style={{ backgroundColor: 'black', color: 'white', marginTop: 'auto', padding: '20px 0'}}>
+                <div className="container-fluid">
+                    <div className="row justify-content-around text-center">
                         <div className="col-md-6">
                             <h5>Contact Us</h5>
                             <h5>About Us</h5>
@@ -31,7 +31,7 @@ export default function Home(){
                             <h5>Barbershop</h5>
                             <h5>Careers</h5>
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-6 text-center">
                             <h5>Track Your Order</h5>
                             <h5>Size Chart</h5>
                             <h5>FAQs</h5>
@@ -50,4 +50,3 @@ export default function Home(){
         </>
     )
 }
-

@@ -248,31 +248,33 @@ export default function Cart() {
   }
 
   return (
-    <div>
+    <div className="cart-container" >
       <h2 className="my-5 pt-5">Shopping Cart</h2>
       {cart && cart.cartItems && cart.cartItems.length > 0 ? (
         <React.Fragment>
           {cart.cartItems.map(item => (
-            <div key={item.productId} className="card mb-3">
+            <div key={item.productId} className="card mb-3 bg-pic">
               <div className="card-body row d-flex justify-content-between">
                 <div className='col-6'>
-                  <h5 className="card-title">{item.name}</h5>
+                  
+                  <h5 className="card-title mt-2">{item.name}</h5>
                   <p className="card-text">Price: ${item.price}</p>
                   <p className="card-text">
                     <Button variant="dark" className='mx-2' onClick={() => handleEditQuantity(item, false)}>-</Button>
                     {item.quantity}
                     <Button variant="dark" className='ml-2' onClick={() => handleEditQuantity(item, true)}>+</Button>
                   </p>
+                  <p className="card-text text-success txt-sz-lg">₱ {item.subtotal}</p>                   
+                  <Button variant="danger" onClick={() => handleRemoveItem(item.productId)}>Remove</Button>
                 </div>
                 <div className='col-6 col-sm-4 col-md-2'>
-                  <p className="card-text text-success txt-sz-lg">₱{item.subtotal}</p>
-                  <Button className='mt-5 ml-3 ml-md-5' variant="danger" onClick={() => handleRemoveItem(item.productId)}>Remove</Button>
+                  <img src={`./images/${item.name}.jpg`} alt={item.name} className="img-fluid" />
                 </div>
               </div>
             </div>
           ))}
           <div className="text-center mb-4">
-            <p className="font-weight-bold text-lg txt-sz-lg">Total: ₱{cart.totalPrice}</p>
+            <p className="font-weight-bold text-lg txt-sz-lg">Total: ₱ {cart.totalPrice}</p>
             <Button className="btn btn-success mx-2" onClick={checkout}>Checkout</Button>
             <Button className="btn btn-danger mx-2" onClick={clearCart}>Clear Cart</Button>
           </div>
@@ -282,4 +284,5 @@ export default function Cart() {
       )}
     </div>
   );
+  
 }
