@@ -4,11 +4,45 @@
   box-sizing: border-box;
 }
 
-.cardHighlight{
-  min-height: 100%;
-}
 .image{
   width: 400px;
   height: 400px;
   object-fit: cover;
+}
+
+.custom-table {
+  border-collapse: collapse;
+  table-layout: auto;
+  width: 100%;
+}
+
+.custom-table th,
+.custom-table td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-table thead th,
+.custom-table tbody td {
+  border: none;
+}
+
+.table-container {
+  max-height: calc(100vh - 200px); /* Adjust the 200px according to your header/footer height */
+  overflow-y: auto;
+}
+
+.plain-row {
+  background-color: white;
+}
+
+.total-row {
+  background-color: black; /* Change this to the desired color */
+  height: 50px;
+  font-size: 2rem;
+}
+
+.txt-sz-lg{
+  font-size: 2rem;
 }

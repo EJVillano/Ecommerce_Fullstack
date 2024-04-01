@@ -8,7 +8,7 @@ export default function productCard({ productProp }) {
     const imageSrc = `./images/${name}.jpg`;
 
     return (
-        <Card className="mt-3 col-2 m-2">
+        <Card className="mt-3 col-12 col-md-4 col-lg-3 m-2">
             <Card.Img variant="top" src={imageSrc} alt={name} />
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
