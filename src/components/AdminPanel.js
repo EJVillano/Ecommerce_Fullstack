@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import EditProduct from './EditProduct';
 import ArchiveProduct from './ArchiveProduct';
+import SetAdmin from './SetAdmin';
 
 export default function AdminPanel({ productsData, fetchData }) {
     const [products, setProducts] = useState([]);
@@ -32,9 +33,10 @@ export default function AdminPanel({ productsData, fetchData }) {
        return (
          <>
            <h1 className="text-center my-5 pt-5">Admin Dashboard</h1>
-           <div className="text-center mb-3">
-             <Button as={Link} to="/addProduct" variant="primary">Add New Product</Button>{' '}
+           <div className="text-center mb-3 row d-flex justify-content-center">
+             <Button as={Link} to="/addProduct" variant="primary" >Add New Product</Button>{' '}
              <Button as={Link} to="/order" variant="success">Show User Orders</Button>
+             <SetAdmin className="m-3"/>
            </div>
            <Table striped bordered hover responsive>
              <thead>

@@ -9,7 +9,7 @@ export default function productCard({ productProp }) {
 
     return (
         <Card className="mt-3 col-2 m-2">
-            <Card.Img variant="top" src={imageSrc} alt={name} style={{ width: '400px', height: '400px', objectFit: 'cover' }} />
+            <Card.Img variant="top" src={imageSrc} alt={name} />
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
                 <Card.Subtitle>Description:</Card.Subtitle>

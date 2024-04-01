@@ -5,7 +5,6 @@ import Swal from 'sweetalert2';
 export default function Adminify() {
     const [showModal, setShowModal] = useState(false);
     const [userId, setUserId] = useState('');
-    const [error, setError] = useState('');
 
     const handleShowModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
@@ -39,7 +38,6 @@ export default function Adminify() {
         .catch(error => {
             // Handle error
             console.error('Error setting user as admin:', error);
-            setError('Failed to set user as admin');
             Swal.fire({
                 icon: 'error',
                 title: 'Error!',
