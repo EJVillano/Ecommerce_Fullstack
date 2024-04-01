@@ -17,8 +17,6 @@ export default function ProductView(){
     const [quantity, setQuantity] = useState(1); // Default quantity is 1
     const [size, setSize] = useState(""); // Default size is empty
 
-    
-
     const handleQuantityChange = (event) => {
         setQuantity(parseInt(event.target.value)); // Convert value to integer
     };
@@ -28,6 +26,15 @@ export default function ProductView(){
     };
 
     const Addtocart = () => {
+        if (size === "") {
+            Swal.fire({
+                title: "Error",
+                icon: "error",
+                text: "Please choose a size before adding to cart."
+            });
+            return; // Exit the function if size is not selected
+        }
+
         fetch(`${process.env.REACT_APP_API_URL}/cart/add-to-cart`, {
             method: "POST",
             headers: {
@@ -87,12 +94,14 @@ export default function ProductView(){
         });
     }, [productId]);
 
+    const imageSrc = `./images/${name}.jpg`;
+
     return(
         <Container className="mt-5 pt-5">
             <Row>
                 <Col lg={{ span: 6, offset: 3 }}>
                     <Card>
-                        <Card.Img variant="top" src={backgroundImage} alt="" />
+                        <Card.Img variant="top" src={imageSrc} alt="" />
                         <Card.Body>
                             <Card.Title>{name}</Card.Title>
                             <Card.Subtitle>Description:</Card.Subtitle>
