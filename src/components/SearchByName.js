@@ -26,7 +26,7 @@ const SearchByName = () => {
   return (
     <Container className='container-fluid'>
       <div className='row'>
-        <Form.Group className='col-12 col-md-9 m-3'>
+        <Form.Group className='col-12 col-md-9'>
           <Form.Control
             type="text"
             placeholder="Enter product name"
@@ -34,7 +34,7 @@ const SearchByName = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </Form.Group>
-        <div className="col-12 col-md-2 d-flex align-items-end">
+        <div className="col-12 col-md-2">
           <Button className="w-100 my-auto" variant="dark" onClick={handleSearch}>SEARCH</Button>
         </div>
       </div>

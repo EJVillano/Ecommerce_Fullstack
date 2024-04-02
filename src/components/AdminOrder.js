@@ -23,40 +23,10 @@ export default function OrderPage() {
       })
       .then(data => {
         setOrders(data.orders);
-        fetchUserNames(data.orders);
       })
       .catch(error => {
         console.error('Error fetching orders:', error);
       });
-  };
-
-  const fetchUserNames = async (orders) => {
-    const userIds = orders.map(order => order.userId);
-    const uniqueUserIds = [...new Set(userIds)]; // Get unique user ids
-    const newNames = {};
-
-    for (const userId of uniqueUserIds) {
-      try {
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/details?userId=${userId}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch user details');
-        }
-
-        const userData = await response.json();
-        const userName = `${userData.user.firstName} ${userData.user.lastName}`;
-        newNames[userId] = userName;
-      } catch (error) {
-        console.error(`Error fetching user details for user ID ${userId}:`, error);
-        newNames[userId] = 'Unknown';
-      }
-    }
-
-    setUserNames(newNames);
   };
 
   return (
@@ -66,6 +36,7 @@ export default function OrderPage() {
         <thead>
           <tr className="text-center bg-dark text-white">
             <th>Order ID</th>
+            <th>Products</th>
             <th>User Name</th>
             <th>Total Price</th>
             <th>Ordered On</th>
@@ -76,6 +47,15 @@ export default function OrderPage() {
           {orders.map(order => (
             <tr key={order._id}>
               <td>{order._id}</td>
+              <td style={{ listStyleType: 'none', paddingLeft: 0 }}>
+                <ul style={{ listStyleType: 'none', paddingLeft: 0 }}>
+                  {order.productsOrdered.map(product => (
+                    <li key={product.productId}>
+                      {product.quantity}x {product.productId}
+                    </li>
+                  ))}
+                </ul>
+              </td>
               <td>{order.userId}</td>
               <td>${order.totalPrice.toFixed(2)}</td>
               <td>{new Date(order.orderedOn).toLocaleString()}</td>
