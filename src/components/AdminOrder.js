@@ -57,7 +57,7 @@ export default function OrderPage() {
                 </ul>
               </td>
               <td>{order.userId}</td>
-              <td>${order.totalPrice.toFixed(2)}</td>
+              <td>₱ {order.totalPrice.toFixed(2)}</td>
               <td>{new Date(order.orderedOn).toLocaleString()}</td>
               <td>{order.status}</td>
             </tr>
