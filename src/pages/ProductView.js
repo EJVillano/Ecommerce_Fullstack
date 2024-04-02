@@ -56,14 +56,14 @@ export default function ProductView(){
                     icon: 'success',
                     text: data.message
                 });
-                navigate("/products");
+                navigate("/cart");
             } else if (data.updatedCart) {
                 Swal.fire({
                     title: "Success",
                     icon: 'success',
                     text: `successfully added product to cart`
                 });
-                navigate("/products");
+                navigate("/cart");
                 console.log("Updated Cart:", data.updatedCart);
                 // You can use the updatedCart data as needed in your application
             } else {

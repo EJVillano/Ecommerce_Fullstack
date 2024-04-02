@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { Navigate, Link } from 'react-router-dom';
+import { Navigate, Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
 
@@ -8,7 +8,7 @@ import UserContext from '../UserContext';
 export default function Register(){
 
 	const {user} = useContext(UserContext);
-
+    const navigate = useNavigate();
 	console.log(user);
 
 
@@ -69,6 +69,9 @@ export default function Register(){
                     icon: "success",
                     text: "Welcome Ecommerce"
                 })
+                .then(() => {
+                    navigate('/home'); // Navigate to the "/products" route
+                });
 
     		}else if (data.error === "Email invalid"){
     			alert("Email is invalid")

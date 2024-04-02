@@ -65,7 +65,7 @@ export default function Login(props) {
                 Swal.fire({
                     title:"Login Successful!",
                     icon: "success",
-                    text: "Welcome Ecommerce"
+                    text: "Welcome to Titania"
                 })
 
 
