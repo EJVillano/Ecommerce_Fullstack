@@ -8,7 +8,7 @@ export default function AdminProducts(){
 	const [products, setProducts] = useState([])
 
 	useEffect(()=>{
-		fetch(`${process.env.REACT_APP_API_URL}/products/all`,{
+		fetch(`${process.env.REACT_APP_API_BASE_URL}/products/all`,{
             headers:{
                 Authorization: `Bearer ${ localStorage.getItem('token')}`
             }
@@ -25,7 +25,7 @@ export default function AdminProducts(){
 
 	const fetchData = () =>{
 
-		fetch(`${process.env.REACT_APP_API_URL}/products/all`,{
+		fetch(`${process.env.REACT_APP_API_BASE_URL}/products/all`,{
             headers:{
                 Authorization: `Bearer ${ localStorage.getItem('token')}`
             }

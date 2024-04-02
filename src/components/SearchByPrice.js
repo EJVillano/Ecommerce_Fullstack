@@ -8,7 +8,7 @@ export default function SearchByPriceRange() {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/products/searchByPrice`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/products/searchByPrice`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

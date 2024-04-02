@@ -8,7 +8,7 @@ const SearchByName = () => {
 
   const handleSearch = () => {
     if (searchTerm.trim() !== '') {
-      fetch(`${process.env.REACT_APP_API_URL}/products/searchByName`, {
+      fetch(`${process.env.REACT_APP_API_BASE_URL}/products/searchByName`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

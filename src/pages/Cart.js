@@ -8,7 +8,7 @@ export default function Cart() {
 
   useEffect(() => {
     console.log("Fetching cart data...");
-    fetch(`${process.env.REACT_APP_API_URL}/cart/get-cart`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/get-cart`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -45,7 +45,7 @@ export default function Cart() {
     }
 
     const productIds = cartItems.map(item => item.productId);
-    fetch(`${process.env.REACT_APP_API_URL}/products?ids=${productIds.join(',')}`)
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/products?ids=${productIds.join(',')}`)
       .then(res => res.json())
       .then(data => {
         const products = data.products;
@@ -81,7 +81,7 @@ export default function Cart() {
     const newQuantity = increment ? item.quantity + 1 : Math.max(1, item.quantity - 1);
     const updatedCartItem = { productId: item.productId, quantity: newQuantity };
 
-    fetch(`${process.env.REACT_APP_API_URL}/cart/update-cart-quantity`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/update-cart-quantity`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ export default function Cart() {
   };
 
   const handleRemoveItem = (productId) => {
-    fetch(`${process.env.REACT_APP_API_URL}/cart/${productId}/remove-from-cart`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/${productId}/remove-from-cart`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -157,7 +157,7 @@ export default function Cart() {
   };
 
   const clearCart = () => {
-    fetch(`${process.env.REACT_APP_API_URL}/cart/clear-cart`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/clear-cart`, {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -171,7 +171,7 @@ export default function Cart() {
         }
       })
       .then(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/cart/get-cart`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/get-cart`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
@@ -208,7 +208,7 @@ export default function Cart() {
   const checkout = (e) => {
     e.preventDefault();
 
-    fetch(`${process.env.REACT_APP_API_URL}/orders/checkout`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/orders/checkout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -34,7 +34,7 @@ export default function Register(){
     	
     	e.preventDefault();
 
-    	fetch(`${process.env.REACT_APP_API_URL}/users/`,{
+    	fetch(`${process.env.REACT_APP_API_BASE_URL}/users/`,{
 
     		method:'POST',
     		headers:{

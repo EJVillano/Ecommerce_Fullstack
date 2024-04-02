@@ -12,7 +12,7 @@ const UpdateProfile = () => {
 
     try {
     const token = localStorage.getItem("token");
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/profile`, {
+    const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

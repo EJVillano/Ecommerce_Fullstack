@@ -19,7 +19,7 @@ export default function ResetPassword(){
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/reset-password`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/reset-password`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

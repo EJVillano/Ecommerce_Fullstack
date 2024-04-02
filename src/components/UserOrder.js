@@ -16,7 +16,7 @@ const OrderPage = () => {
         return;
       }
       setLoading(true);
-      fetch(`${process.env.REACT_APP_API_URL}/orders/my-orders`, {
+      fetch(`${process.env.REACT_APP_API_BASE_URL}/orders/my-orders`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const OrderPage = () => {
     const fetchProducts = (productIds, token) => {
       Promise.all(
         productIds.map(productId => {
-          return fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`, {
+          return fetch(`${process.env.REACT_APP_API_BASE_URL}/products/${productId}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

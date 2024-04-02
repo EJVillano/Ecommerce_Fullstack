@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 import UserContext from '../UserContext';
 
-console.log(process.env.REACT_APP_API_URL);
+console.log(process.env.REACT_APP_API_BASE_URL);
 
 export default function Login(props) {
 
@@ -25,11 +25,11 @@ export default function Login(props) {
 
     function authenticate(e) {
 
-        console.log(process.env.REACT_APP_API_URL);
+        console.log(process.env.REACT_APP_API_BASE_URL);
 
         
         e.preventDefault();
-        fetch(`${process.env.REACT_APP_API_URL}/users/login`,{
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/login`,{
 
         method: 'POST',
         headers: {
@@ -102,7 +102,7 @@ export default function Login(props) {
 
        
 
-        fetch(`${process.env.REACT_APP_API_URL}/users/details`,{
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/details`,{
             headers:{
                 Authorization: `Bearer ${ token }`
             }
