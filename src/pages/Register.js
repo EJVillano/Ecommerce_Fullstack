@@ -70,7 +70,7 @@ export default function Register(){
                     text: "Welcome Ecommerce"
                 })
                 .then(() => {
-                    navigate('/home'); // Navigate to the "/products" route
+                    navigate('/');
                 });
 
     		}else if (data.error === "Email invalid"){

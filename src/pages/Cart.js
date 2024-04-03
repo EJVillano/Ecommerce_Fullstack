@@ -258,7 +258,7 @@ export default function Cart() {
                 <div className='col-6'>
                   
                   <h5 className="card-title mt-2">{item.name}</h5>
-                  <p className="card-text">Price: ${item.price}</p>
+                  <p className="card-text">Price: ₱ {item.price}</p>
                   <p className="card-text">
                     <Button variant="dark" className='mx-2' onClick={() => handleEditQuantity(item, false)}>-</Button>
                     {item.quantity}

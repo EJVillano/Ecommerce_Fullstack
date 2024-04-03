@@ -132,7 +132,7 @@ const OrderPage = () => {
                     <tbody>
                       {order.productsOrdered.map(item => (
                         <tr key={item.productId}>
-                          <td className="text-center"><img src={`../images/${products[item.productId]?.image}`} alt={products[item.productId]?.name} style={{ maxWidth: '50px', maxHeight: '50px' }} /></td>
+                          {/* <td className="text-center"><img src={`../images/${products[item.productId]?.image}`} alt={products[item.productId]?.name} style={{ maxWidth: '50px', maxHeight: '50px' }} /></td> */}
                           <td>{item.quantity}x {products[item.productId]?.name}</td>
                           <td>₱ {(products[item.productId]?.price * item.quantity).toFixed(2)}</td>
                         </tr>
