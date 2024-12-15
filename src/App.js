@@ -74,7 +74,7 @@ function App() {
             <Container fluid>
                   <Routes>
                   
-                    <Route path="/" element={<Home/>}/>
+                    <Route path="/home" element={<Home/>}/>
                     <Route path="/products" element={<Products/>}/>
                     <Route path="/products/:productId" element={<ProductView/>}/>
                     <Route path="/addProduct" element={<AddProduct/>}/>
@@ -82,7 +82,7 @@ function App() {
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/order" element={<Order />} />
-                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/" element={<Login/>}/>
                     <Route path="/logout" element={<Logout/>}/>
                     <Route path="*" element={<Error />} />
                   </Routes>
