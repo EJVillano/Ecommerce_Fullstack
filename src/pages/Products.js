@@ -39,6 +39,7 @@ export default function Products(){
 	useEffect(()=>{
 
 		fetchData();
+		console.log({products});
 
 	},[])
 
